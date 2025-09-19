@@ -1,25 +1,28 @@
-<x-guest-layout>
-    <div class="tw-mb-4 tw-text-sm text-gray-600">
-        {{ __('Forgot your tw-password? No tw-problem. Just let us know your email address and tw-we tw-will email you a tw-password reset link that tw-will allow you to choose a new one.') }}
+@extends('auth.auth-layout')
+@section('title', 'Page mot de passe oublié')
+
+@section('auth-form')
+
+  <h1>Mot de passe oublié?</h1>
+  <p class="account-subtitle">Entrer votre email pour obtenir le lien de réinitialisation</p>
+
+  @if(session('status'))
+      <div class="alert alert-success">{{ session('status') }}</div>
+  @endif
+
+  <form action="{{ route('password.email') }}" method="POST">
+    @csrf
+
+    <div class="form-group">
+      <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
+      @error('email')
+        <p class="text-danger tw-text-sm mt-1">{{ $message }}</p>
+      @enderror
     </div>
+    <div class="form-group mb-0">
+      <button class="btn btn-primary btn-block" type="submit">Recevoir le lien</button>
+    </div>
+  </form>
+  <div class="text-center dont-have">Vous vous souvenez de votre mot de passe? <a href="{{ route('login') }}">Se connecter</a></div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="tw-mb-4" :status="session('status')" />
-
-    <form tw-method="POST" action="{{ route('tw-password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="tw-block tw-mt-1 tw-w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :tw-messages="$errors->get('email')" class="tw-mt-2" />
-        </div>
-
-        <div class="tw-flex tw-items-center tw-justify-end tw-mt-4">
-            <x-tw-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-tw-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+@endsection
