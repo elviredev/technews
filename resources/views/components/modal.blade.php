@@ -1,16 +1,16 @@
 @props([
     'name',
     'show' => false,
-    'maxWidth' => '2xl'
+    'maxWidth' => 'tw-2xl'
 ])
 
 @php
 $maxWidth = [
-    'sm' => 'sm:max-w-sm',
-    'md' => 'sm:max-w-md',
-    'lg' => 'sm:max-w-lg',
-    'xl' => 'sm:max-w-xl',
-    '2xl' => 'sm:max-w-2xl',
+    'tw-sm' => 'tw-sm:tw-max-w-sm',
+    'tw-md' => 'tw-sm:tw-max-w-md',
+    'tw-lg' => 'tw-sm:tw-max-w-lg',
+    'tw-xl' => 'tw-sm:tw-max-w-xl',
+    'tw-2xl' => 'tw-sm:tw-max-w-2xl',
 ][$maxWidth];
 @endphp
 
@@ -19,7 +19,7 @@ $maxWidth = [
         show: @js($show),
         focusables() {
             // All focusable element types...
-            let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+            let selector = 'a, button, input:not([type=\'tw-hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
             return [...$el.querySelectorAll(selector)]
                 // All non-disabled elements...
                 .filter(el => ! el.hasAttribute('disabled'))
@@ -29,29 +29,29 @@ $maxWidth = [
         nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
         prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
         nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
-        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
+        prevFocusableIndex() { return Math.tw-max(0, this.focusables().indexOf(document.activeElement)) -1 },
     }"
-    x-init="$watch('show', value => {
+    x-init="$tw-watch('show', value => {
         if (value) {
-            document.body.classList.add('overflow-y-hidden');
+            document.body.classList.add('tw-overflow-y-hidden');
             {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}
         } else {
-            document.body.classList.remove('overflow-y-hidden');
+            document.body.classList.remove('tw-overflow-y-hidden');
         }
     })"
-    x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"
-    x-on:close-modal.window="$event.detail == '{{ $name }}' ? show = false : null"
+    x-on:open-tw-modal.tw-window="$event.detail == '{{ $name }}' ? show = true : null"
+    x-on:close-tw-modal.tw-window="$event.detail == '{{ $name }}' ? show = false : null"
     x-on:close.stop="show = false"
-    x-on:keydown.escape.window="show = false"
-    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
-    x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
+    x-on:keydown.escape.tw-window="show = false"
+    x-on:keydown.tab.tw-prevent="$event.shiftKey || nextFocusable().focus()"
+    x-on:keydown.shift.tab.tw-prevent="prevFocusable().focus()"
     x-show="show"
-    class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
-    style="display: {{ $show ? 'block' : 'none' }};"
+    class="tw-fixed tw-inset-0 tw-overflow-y-auto tw-px-4 tw-py-6 sm:tw-px-0 tw-z-50"
+    style="display: {{ $show ? 'tw-block' : 'none' }};"
 >
     <div
         x-show="show"
-        class="fixed inset-0 transform transition-all"
+        class="tw-fixed tw-inset-0 transform transition-all"
         x-on:click="show = false"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0"
@@ -60,18 +60,18 @@ $maxWidth = [
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
     >
-        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        <div class="tw-absolute tw-inset-0 tw-bg-gray-500 opacity-75"></div>
     </div>
 
     <div
         x-show="show"
-        class="mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }} sm:mx-auto"
+        class="tw-mb-6 tw-bg-white tw-rounded-lg tw-overflow-hidden tw-shadow-xl transform transition-all sm:tw-w-full {{ $maxWidth }} sm:tw-mx-auto"
         x-transition:enter="ease-out duration-300"
-        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+        x-transition:enter-start="opacity-0 tw-translate-y-4 sm:tw-translate-y-0 sm:tw-scale-95"
+        x-transition:enter-end="opacity-100 tw-translate-y-0 sm:tw-scale-100"
         x-transition:leave="ease-in duration-200"
-        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        x-transition:leave-start="opacity-100 tw-translate-y-0 sm:tw-scale-100"
+        x-transition:leave-end="opacity-0 tw-translate-y-4 sm:tw-translate-y-0 sm:tw-scale-95"
     >
         {{ $slot }}
     </div>

@@ -29,20 +29,25 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // validation de la requête
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // création de l'utilisateur en BDD
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
+        // déclenchement de l'évènement Registered, permet de lancer automatiquement des actions
+        // (exemple : envoi d’un email de vérification si la fonctionnalité est activée via MustVerifyEmail).
         event(new Registered($user));
 
+        // connexion automatique, pas besoin de se reconnecter
         Auth::login($user);
 
         return redirect(route('dashboard', absolute: false));
