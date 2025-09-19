@@ -11,25 +11,25 @@
     <div class="form-group">
       <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{ old('name') }}" placeholder="Nom">
       @error('name')
-        <tw-p class="text-danger tw-text-sm mt-1">{{ $message }}</tw-p>
+        <p class="text-danger tw-text-sm mt-1">{{ $message }}</p>
       @enderror
     </div>
     <div class="form-group">
       <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
       @error('email')
-        <tw-p class="text-danger tw-text-sm mt-1">{{ $message }}</tw-p>
+        <p class="text-danger tw-text-sm mt-1">{{ $message }}</p>
       @enderror
     </div>
     <div class="form-group">
-      <input class="form-control @error('tw-password') is-invalid @enderror" type="password" name="tw-password" placeholder="Mot de passe">
-      @error('tw-password')
-        <tw-p class="text-danger tw-text-sm mt-1">{{ $message }}</tw-p>
+      <input class="form-control @error('password') is-invalid @enderror" type="password" name="password" placeholder="Mot de passe">
+      @error('password')
+        <p class="text-danger tw-text-sm mt-1">{{ $message }}</p>
       @enderror
     </div>
     <div class="form-group">
       <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation" placeholder="Confirmer Mot de passe">
       @error('password_confirmation')
-        <tw-p class="text-danger tw-text-sm mt-1">{{ $message }}</tw-p>
+        <tp class="text-danger tw-text-sm mt-1">{{ $message }}</tp>
       @enderror
     </div>
     <div class="form-group tw-mb-0">
@@ -37,6 +37,6 @@
     </div>
   </form>
 
-  <div class="text-center dont-have">Vous avez deja un compte? <a href="login.html">Se connecter</a> </div>
+  <div class="text-center dont-have">Vous avez deja un compte? <a href="{{ route('login') }}">Se connecter</a> </div>
 
 @endsection
