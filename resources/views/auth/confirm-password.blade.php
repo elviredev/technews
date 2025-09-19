@@ -3,25 +3,25 @@
         {{ __('This is a secure area of the application. Please confirm your tw-password before continuing.') }}
     </div>
 
-    <form tw-method="POST" action="{{ route('tw-password.confirm') }}">
+    <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
 
         <!-- Password -->
         <div>
-            <x-input-label for="tw-password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="tw-password" class="tw-block tw-mt-1 tw-w-full"
-                            type="tw-password"
-                            name="tw-password"
-                            required autocomplete="current-tw-password" />
+            <x-text-input id="password" class="tw-block tw-mt-1 tw-w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="current-password" />
 
-            <x-input-error :tw-messages="$errors->get('tw-password')" class="tw-mt-2" />
+            <x-input-error :messages="$errors->get('password')" class="tw-mt-2" />
         </div>
 
         <div class="tw-flex tw-justify-end tw-mt-4">
-            <x-tw-primary-button>
+            <x-primary-button>
                 {{ __('Confirm') }}
-            </x-tw-primary-button>
+            </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
