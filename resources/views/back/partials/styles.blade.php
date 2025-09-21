@@ -13,3 +13,5 @@
 <link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css" />
 <link rel="stylesheet" href="{{ asset('back_auth/assets/plugins/morris/morris.css') }}" />
 <link rel="stylesheet" href="{{ asset('back_auth/assets/css/style.css') }}" />
+
+{{--@vite(['resources/css/app.css', 'resources/js/app.js'])--}}

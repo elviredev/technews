@@ -1,17 +1,19 @@
 <div class="header">
   <div class="header-left">
-    <a href="index.html" class="logo">
+    <a href="{{ route('dashboard') }}" class="logo">
       <img
-        src="{{ asset('back_auth/assets/img/logo.png') }}"
+        class="rounded-circle"
+        src="{{ asset('storage/' . Auth::user()->image) }}"
         width="50"
         height="70"
         alt="logo"
       />
-      <span class="logoclass">John Doe</span>
+      <span class="logoclass">{{ Auth::user()->name }}</span>
     </a>
-    <a href="index.html" class="logo logo-small">
+    <a href="{{ route('dashboard') }}" class="logo logo-small">
       <img
-        src="{{ asset('back_auth/assets/img/logo.png') }}"
+        class="rounded-circle"
+        src="{{ asset('storage/' . Auth::user()->image) }}"
         alt="Logo"
         width="30"
         height="30"
@@ -29,28 +31,32 @@
               <span class="user-img"
               ><img
                   class="rounded-circle"
-                  src="{{ asset('back_auth/assets/img/profiles/avatar-01.png') }}"
+                  src="{{ asset('storage/' . Auth::user()->image) }}"
                   width="31"
-                  alt="John Doe"
+                  alt="avatar"
                 /></span>
       </a>
       <div class="dropdown-menu">
         <div class="user-header">
           <div class="avatar avatar-sm">
             <img
-              src="{{ asset('back_auth/assets/img/profiles/avatar-01.png') }}"
+              src="{{ asset('storage/' . Auth::user()->image) }}"
               alt="User Image"
               class="avatar-img rounded-circle"
             />
           </div>
           <div class="user-text">
-            <h6>John Doe</h6>
+            <h6>{{ Auth::user()->name }}</h6>
             <p class="text-muted mb-0">Administrateur</p>
           </div>
         </div>
-        <a class="dropdown-item" href="profile.html">Profile</a>
-        <a class="dropdown-item" href="settings.html">Paramettre</a>
-        <a class="dropdown-item" href="login.html">Deconnexion</a>
+        <a class="dropdown-item" href="{{ route('profile.edit') }}">Profil</a>
+        <a class="dropdown-item" href="settings.html">Paramètre</a>
+        <form action="{{ route('logout') }}" method="POST">
+          @csrf
+
+          <button type="submit" class="fs-md btn dropdown-item" >Deconnexion</button>
+        </form>
       </div>
     </li>
   </ul>

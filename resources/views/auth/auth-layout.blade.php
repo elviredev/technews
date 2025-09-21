@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ asset('back_auth/assets/plugins/morris/morris.css') }}">
   <link rel="stylesheet" href="{{ asset('back_auth/assets/css/style.css') }}">
 
+  {{-- Tailwind CSS --}}
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
