@@ -4,38 +4,51 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Category extends Model
+class Article extends Model
 {
   use HasFactory, HasSlug;
 
   protected $fillable = [
-    'name',
+    'title',
     'slug',
+    'image',
     'description',
     'isActive',
+    'isComment',
+    'isSharable',
+
+    'category_id',
+    'author_id'
   ];
 
   /**
-   * @desc Génére un slug depuis le champs 'name'
+   * @desc Génére le slug à partir du name (Spatie/Sluggable)
    * @return SlugOptions
    */
   public function getSlugOptions(): SlugOptions
   {
     return SlugOptions::create()
-      ->generateSlugsFrom('name')
+      ->generateSlugsFrom('title')
       ->saveSlugsTo('slug');
   }
 
   /**
    * @desc envoi directement le slug dans l'URL au lieu de l'ID
-   * Ex: http://127.0.0.1:8000/category/intelligence-artificielle/edit
    * @return string
    */
   public function getRouteKeyName(): string
   {
     return 'slug';
+  }
+
+  // afficher les images sous forme d'URL
+
+  public function imageUrl(): string
+  {
+    return Storage::url($this->image);
   }
 }
