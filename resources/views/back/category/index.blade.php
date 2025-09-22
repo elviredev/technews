@@ -58,21 +58,17 @@
                       <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-ellipsis-v ellipse_color"></i>
                       </a>
+                      {{-- Dropdown --}}
                       <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="{{ route('category.edit', $category) }}">
                           <i class="fas fa-pencil-alt m-r-5"></i> Modifier
                         </a>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset">
-                          <form action="{{ route('category.destroy', $category) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit" class="btn btn-danger">
-                              <i class="fas fa-trash-alt m-r-5"></i> Supprimer
-                            </button>
-                          </form>
-
-                        </a>
+                        <button
+                          class="dropdown-item text-danger"
+                          data-toggle="modal"
+                          data-target="#delete_asset_{{ $category->id }}">
+                          <i class="fas fa-trash-alt m-r-5"></i> Supprimer
+                        </button>
                       </div>
                     </div>
                   </td>
@@ -80,29 +76,35 @@
               @endforeach
 
               </tbody>
+            </table>
 
-              <div id="delete_asset" class="modal fade delete-modal" role="dialog">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-body text-center">
-                      <img src="assets/img/sent.png" alt="" width="50" height="46" />
-                      <h3 class="delete_class">
-                        Etes vous sure de vouloir supprimer cet element ?
-                      </h3>
-                      <div class="m-t-20">
-                        <a href="#" class="btn btn-white" data-dismiss="modal"
-                        >Fermer</a
-                        >
+            {{-- Modale --}}
+            <div id="delete_asset_{{ $category->id }}" class="modal fade delete-modal" role="dialog">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-body text-center">
+                    <img src="{{ asset('back_auth/assets/img/sent.png') }}" alt="" width="50" height="46" />
+                    <h3 class="delete_class">
+                      Etes vous sûr de vouloir supprimer cette catégorie ?
+                    </h3>
+                    <div class="m-t-20">
+                      <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+                      <form action="{{ route('category.destroy', $category) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+
                         <button type="submit" class="btn btn-danger">Supprimer</button>
-                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>
               </div>
-            </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
 @endsection
