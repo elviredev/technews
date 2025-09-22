@@ -1,5 +1,5 @@
 <div class="header">
-  <div class="header-left">
+  <div class="header-left ">
     <a href="{{ route('dashboard') }}" class="logo">
       <img
         class="rounded-circle"
@@ -10,7 +10,7 @@
       />
       <span class="logoclass">{{ Auth::user()->name }}</span>
     </a>
-    <a href="{{ route('dashboard') }}" class="logo logo-small">
+    <a href="{{ route('dashboard') }}" class="logo logo-small d-none d-lg-block">
       <img
         class="rounded-circle"
         src="{{ asset('storage/' . Auth::user()->image) }}"

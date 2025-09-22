@@ -5,10 +5,10 @@
 @section('dashboard-header')
   <div class="row">
     <div class="col">
-      <h3 class="page-title">Profile</h3>
+      <h3 class="page-title">Profil</h3>
       <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active">Profile</li>
+        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Tableau de Bord</a></li>
+        <li class="breadcrumb-item active">Profil</li>
       </ul>
     </div>
   </div>
@@ -60,16 +60,17 @@
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title d-flex justify-content-between">
-                    <span>Informations Personelles</span>
-                    <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Modifier
+                    <span>Informations Personnelles</span>
+                    <a class="edit-link" data-toggle="modal" href="#edit_personal_details">
+                      <i class="fa fa-edit mr-1"></i>Modifier
                     </a>
                   </h5>
                   <div class="row">
-                    <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Nom</p>
+                    <p class="col-sm-3 font-weight-bold text-brown text-sm-right mb-0 mb-sm-3">Nom :</p>
                     <p class="col-sm-9">{{ Auth::user()->name }}</p>
                   </div>
                   <div class="row">
-                    <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Email</p>
+                    <p class="col-sm-3 font-weight-bold text-brown text-sm-right mb-0 mb-sm-3">Email :</p>
                     <p class="col-sm-9">
                       <a href="">{{ Auth::user()->email }}</a>
                     </p>

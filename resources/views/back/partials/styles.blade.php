@@ -14,4 +14,7 @@
 <link rel="stylesheet" href="{{ asset('back_auth/assets/plugins/morris/morris.css') }}" />
 <link rel="stylesheet" href="{{ asset('back_auth/assets/css/style.css') }}" />
 
+{{-- iziToast--}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 {{--@vite(['resources/css/app.css', 'resources/js/app.js'])--}}

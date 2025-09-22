@@ -505,6 +505,10 @@ button.bg-danger:hover {
   color: #7460ee !important
 }
 
+.text-brown {
+  color: #66676b;
+}
+
 .text-muted {
   color: #333 !important;
   line-height: .5;
@@ -2832,7 +2836,8 @@ html.menu-opened body {
   text-transform: uppercase
 }
 
-.inv-badge {
+.inv-badge,
+.inv-badge-default {
   color: #fff;
   display: inline-flex;
   font-size: 11px;
@@ -2840,7 +2845,14 @@ html.menu-opened body {
   min-width: 70px;
   min-height: 28px;
   line-height: 2;
+}
+
+.inv-badge {
   background-color: rgba(0, 150, 136, 1) !important
+}
+
+.inv-badge-default {
+  background-color: rgb(155, 159, 159) !important
 }
 
 .inv-logo {
