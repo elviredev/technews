@@ -6,7 +6,10 @@
   <div class="page-header">
     <div class="row align-items-center">
       <div class="col">
-        <h3 class="page-title mt-5">Créer un article</h3> </div>
+        <h3 class="page-title mt-5">
+          {{ isset($article) ? 'Modifier' : 'Créer' }} un article
+        </h3>
+      </div>
     </div>
   </div>
 @endsection
@@ -14,10 +17,17 @@
 @section('dashboard-content')
   <div class="row">
     <div class="col-lg-12">
-      <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ isset($article) ? route('article.update', $article) : route('article.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @if(isset($article)) @method('PUT') @endif
 
         <div class="row formtype">
+          @if(isset($article))
+            <div class="col-12 mb-3">
+              <img src="{{ $article->imageUrl() }}" alt="{{ $article->title }}" style="width: 100%; height: 200px; object-fit: cover" >
+            </div>
+          @endif
+
           <div class="col-md-4">
             <div class="form-group">
               <label for="title">Titre de l'article</label>
@@ -26,7 +36,7 @@
                 name="title"
                 class="form-control @error('title') is-invalid @enderror"
                 type="text"
-                value="{{ old('title') }}"
+                value="{{ old('title', $article->title ?? '') }}"
               />
               @error('title')
                 <p class="fs-md text-danger">{{ $message }}</p>
@@ -40,7 +50,8 @@
                 @foreach($categories as $category)
                   <option
                     value="{{ $category->id }}"
-                    {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                    @selected(old('category_id', $article->category_id ?? $categories->first()->id) == $category->id)
+                  >
                     {{ $category->name }}
                   </option>
                 @endforeach
@@ -76,7 +87,7 @@
                 class="form-control @error('description') is-invalid @enderror"
                 rows="5"
                 id="description"
-                name="description">{{ old('description') }}</textarea>
+                name="description">{{ old('description', $article->description ?? '') }}</textarea>
                 @error('description')
                   <p class="fs-md text-danger">{{ $message }}</p>
                 @enderror
@@ -93,7 +104,7 @@
                   id="article_active"
                   name="isActive"
                   value="1"
-                  {{ old('isActive', '1') == '1' ? 'checked' : '' }}
+                  @checked(old('isActive', $article->isActive ?? 1) == 1)
                 >
                 <label class="form-check-label" for="article_active">Publier</label>
               </div>
@@ -104,7 +115,8 @@
                   id="article_inactive"
                   name="isActive"
                   value="0"
-                  {{ old('isActive', '1') == '0' ? 'checked' : '' }}>
+                  @checked(old('isActive', $article->isActive ?? 1) == 0)
+                >
                 <label class="form-check-label" for="article_inactive">Ne pas publier</label>
               </div>
             </div>
@@ -120,7 +132,8 @@
                   id="article_share_active"
                   name="isSharable"
                   value="1"
-                  {{ old('isSharable', '1') == '1' ? 'checked' : '' }}>
+                  @checked(old('isSharable', $article->isSharable ?? 1) == 1)
+                >
                 <label class="form-check-label" for="article_share_active">Partageable</label>
               </div>
               <div class="form-check form-check-inline">
@@ -130,7 +143,8 @@
                   id="article_share_inactive"
                   name="isSharable"
                   value="0"
-                  {{ old('isSharable', '1') == '0' ? 'checked' : '' }}>
+                  @checked(old('isSharable', $article->isSharable ?? 1) == 0)
+                >
                 <label class="form-check-label" for="article_share_inactive">Non Partageable</label>
               </div>
             </div>
@@ -146,8 +160,9 @@
                   id="article_comment_active"
                   name="isComment"
                   value="1"
-                  {{ old('isComment', '1') == '1' ? 'checked' : '' }}>
-                <label class="form-check-label" for="article_comment_active">Autorise</label>
+                  @checked(old('isComment', $article->isComment ?? 1) == 1)
+                >
+                <label class="form-check-label" for="article_comment_active">Autorisé</label>
               </div>
               <div class="form-check form-check-inline">
                 <input
@@ -156,8 +171,9 @@
                   id="article_comment_inactive"
                   name="isComment"
                   value="0"
-                  {{ old('isComment', '1') == '0' ? 'checked' : '' }}>
-                <label class="form-check-label" for="article_comment_inactive">Non autorise</label>
+                  @checked(old('isComment', $article->isComment ?? 1) == 0)
+                >
+                <label class="form-check-label" for="article_comment_inactive">Non autorisé</label>
               </div>
             </div>
           </div>

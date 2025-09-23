@@ -6,8 +6,7 @@
   <div class="row align-items-center">
     <div class="col">
       <h3 class="page-title mt-5">
-        @if(isset($category)) Modifier @else Ajouter @endif
-        une catégorie
+        {{ isset($category) ? 'Modifier' : 'Créer' }} une catégorie
       </h3>
     </div>
   </div>
@@ -32,7 +31,7 @@
                 id="name"
                 type="text"
                 name="name"
-                value="{{ isset($category) ? old('name', $category->name) : old('name') }}"
+                value="{{ old('name', $category->name ?? '') }}"
               />
               @error('name')
                 <p class="text-danger fs-md">{{ $message }}</p>
@@ -48,7 +47,7 @@
                 rows="5"
                 id="description"
                 name="description"
-              >{{ isset($category) ? old('description', $category->description) : old('description') }}</textarea>
+              >{{ old('description', $category->description ?? '') }}</textarea>
               @error('description')
                 <p class="text-danger fs-md">{{ $message }}</p>
               @enderror
@@ -59,11 +58,15 @@
             <div class="form-group">
               <label for="isActive">Statut</label>
               <select class="form-control @error('isActive') is-invalid @enderror" id="isActive" name="isActive">
-                <option @if(isset($category)) @selected($category->isActive == 1) @endif value="1">Activée</option>
-                <option @if(isset($category)) @selected($category->isActive == 0) @endif value="0">Désactivée</option>
+                <option value="1" @selected(old('isActive', $category->isActive ?? 1) == 1)>
+                  Activée
+                </option>
+                <option value="0" @selected(old('isActive', $category->isActive ?? 1) == 0)>
+                  Désactivée
+                </option>
               </select>
               @error('isActive')
-              <p class="text-danger fs-md">{{ $message }}</p>
+                <p class="text-danger fs-md">{{ $message }}</p>
               @enderror
             </div>
           </div>

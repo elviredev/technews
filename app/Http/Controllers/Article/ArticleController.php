@@ -8,6 +8,7 @@ use App\Http\Requests\Article\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -61,7 +62,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('back.article.show', ['article' => $article]);
+        return view('back.article.show', compact('article'));
     }
 
     /**
@@ -69,7 +70,10 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+      return view('back.article.create', [
+        'article' => $article,
+        'categories' => Category::where('isActive', 1)->get()
+      ]);
     }
 
     /**
@@ -77,7 +81,28 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        //
+      // $validated contient les champs du formulaire validés
+      $validated = $request->validated();
+
+      // Gestion de l'image
+      if ($request->hasFile('image')) {
+        // Supprimer l'ancienne si elle existe
+        if ($article->image) {
+          Storage::disk('public')->delete($article->image);
+        }
+
+        // Sauvegarder la nouvelle
+        $validated['image'] = $request->file('image')->store('articles', 'public');
+      }
+
+      // Mise à jour de l'article
+      $article->update($validated);
+
+      // Tags
+      $tags = explode(',', $request->tags);
+      $article->tag($tags);
+
+      return redirect()->route('article.index')->with('success', 'Votre article a bien été modifié 💛');
     }
 
     /**

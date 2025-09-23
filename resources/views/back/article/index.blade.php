@@ -39,7 +39,7 @@
                 <tr>
                   <td>ART-00{{ $article->id }}</td>
                   <td>
-                    <img src="{{ $article->imageUrl() }}" alt="{{ $article->title }}" width="80px" height="80px">
+                    <img src="{{ $article->imageUrl() }}" alt="{{ $article->title }}" style="width: 64px; height: 64px; object-fit: contain">
                   </td>
                   <td>{{ $article->title }}</td>
                   <td>{{ $article->category->name }}</td>
@@ -87,10 +87,11 @@
                         <a class="dropdown-item" href="{{ route('article.show', $article) }}">
                           <i class="fas fa-eye m-r-5"></i> Voir
                         </a>
-                        <a class="dropdown-item" href="edit-article.html">
+                        <a class="dropdown-item" href="{{ route('article.edit', $article) }}">
                           <i class="fas fa-pencil-alt m-r-5"></i> Modifier
                         </a>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fas fa-trash-alt m-r-5"></i> Supprimer
+                        <a class="dropdown-item text-danger" href="#" data-toggle="modal" data-target="#delete_asset">
+                          <i class="fas fa-trash-alt m-r-5"></i> Supprimer
                         </a>
                       </div>
                     </div>
