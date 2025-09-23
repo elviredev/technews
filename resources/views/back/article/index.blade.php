@@ -25,7 +25,7 @@
                 <th>ID Article</th>
                 <th>Image</th>
                 <th>Titre</th>
-                <th>Categorie</th>
+                <th>Catégorie</th>
                 <th>Date</th>
                 <th>Publication</th>
                 <th>Partage</th>
@@ -35,44 +35,68 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>ART-0001</td>
-                <td></td>
-                <td>Titre de l'article</td>
-                <td>Categorie</td>
-                <td>21-03-2020</td>
-                <td>
-                  <div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Publié</a> </div>
-                </td>
-                <td>
-                  <div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Active</a> </div>
-                </td>
-                <td>
-                  <div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Active</a> </div>
-                </td>
-                <td>
-                  <h2 class="table-avatar">
-                    <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-03.jpg" alt="User Image"></a>
-                    <a href="profile.html">Tommy Bernal <span>#0001</span></a>
-                  </h2>
-                </td>
-                <td class="text-right">
-                  <div class="dropdown dropdown-action">
-                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item" href="edit-article.html">
-                        <i class="fas fa-pencil-alt m-r-5"></i> Voir
-                      </a>
-                      <a class="dropdown-item" href="edit-article.html">
-                        <i class="fas fa-pencil-alt m-r-5"></i> Modifier
-                      </a>
-                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fas fa-trash-alt m-r-5"></i> Supprimer
-                      </a>
+              @foreach($articles as $article)
+                <tr>
+                  <td>ART-00{{ $article->id }}</td>
+                  <td>
+                    <img src="{{ $article->imageUrl() }}" alt="{{ $article->title }}" width="80px" height="80px">
+                  </td>
+                  <td>{{ $article->title }}</td>
+                  <td>{{ $article->category->name }}</td>
+                  <td>{{ $article->created_at->format('d-m-Y') }}</td>
+                  <td>
+                    <div class="actions">
+                      @if($article->isActive == 1)
+                        <a href="#" class="btn btn-sm bg-success-light mr-2">Publié</a>
+                      @else
+                        <a href="#" class="btn btn-sm bg-default-light mr-2">Non Publié</a>
+                      @endif
                     </div>
-                  </div>
-                </td>
-              </tr>
+                  </td>
+                  <td>
+                    <div class="actions">
+                      @if($article->isSharable == 1)
+                        <a href="#" class="btn btn-sm bg-success-light mr-2">Activé</a>
+                      @else
+                        <a href="#" class="btn btn-sm bg-default-light mr-2">Désactivé</a>
+                      @endif
+                    </div>
+                  </td>
+                  <td>
+                    <div class="actions">
+                      @if($article->isComment == 1)
+                        <a href="#" class="btn btn-sm bg-success-light mr-2">Activé</a>
+                      @else
+                        <a href="#" class="btn btn-sm bg-default-light mr-2">Désactivé</a>
+                      @endif
+                    </div>
+                  </td>
+                  <td>
+                    <h2 class="table-avatar">
+                      <a href="{{ route('profile.edit') }}" class="avatar avatar-sm mr-2">
+                        <img class="avatar-img rounded-circle" src="{{ asset('storage/' . $article->author->image) }}" alt="User Image">
+                      </a>
+                      <a href="{{ route('profile.edit') }}">{{ $article->author->name }} <span>#00{{ $article->author->id }}</span></a>
+                    </h2>
+                  </td>
+                  <td class="text-right">
+                    <div class="dropdown dropdown-action">
+                      <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{{ route('article.show', $article) }}">
+                          <i class="fas fa-eye m-r-5"></i> Voir
+                        </a>
+                        <a class="dropdown-item" href="edit-article.html">
+                          <i class="fas fa-pencil-alt m-r-5"></i> Modifier
+                        </a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fas fa-trash-alt m-r-5"></i> Supprimer
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              @endforeach
               </tbody>
             </table>
           </div>
@@ -81,3 +105,5 @@
     </div>
   </div>
 @endsection
+
+

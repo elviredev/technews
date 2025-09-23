@@ -16,7 +16,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('back.article.index');
+        return view('back.article.index', [
+          'articles' => Article::all(),
+        ]);
     }
 
     /**
@@ -54,7 +56,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('back.article.show', ['article' => $article]);
     }
 
     /**
