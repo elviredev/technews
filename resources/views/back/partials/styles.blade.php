@@ -18,3 +18,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {{--@vite(['resources/css/app.css', 'resources/js/app.js'])--}}
+
+<style>
+  .bootstrap-tagsinput .tag {
+    margin-right: 2px;
+    color: #ffffff;
+    background: #2196f3;
+    padding: 3px 7px;
+    border-radius: 3px;
+  }
+
+  .bootstrap-tagsinput {
+    width: 100%;
+  }
+</style>

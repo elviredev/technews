@@ -9,3 +9,4 @@
 ### 📚 Librairies, packages
 - Alerte : **iziToast CDN**
 - Slug : **spatie/laravel-sluggable**
+- Tag : **rtconner/laravel-tagging**

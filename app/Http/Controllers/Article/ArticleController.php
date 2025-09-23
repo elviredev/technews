@@ -46,7 +46,12 @@ class ArticleController extends Controller
 
       $validated['author_id'] = Auth::id();
 
-      Article::create($validated);
+      // Tags
+      $tags = explode(',', $request->tags);
+
+      $article = Article::create($validated);
+
+      $article->tag($tags);
 
       return redirect()->route('article.index')->with('success', 'Votre article a bien été enregistré 💛');
     }
