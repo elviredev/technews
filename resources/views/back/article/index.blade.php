@@ -90,16 +90,45 @@
                         <a class="dropdown-item" href="{{ route('article.edit', $article) }}">
                           <i class="fas fa-pencil-alt m-r-5"></i> Modifier
                         </a>
-                        <a class="dropdown-item text-danger" href="#" data-toggle="modal" data-target="#delete_asset">
+                        <button
+                          class="dropdown-item text-danger"
+                          data-toggle="modal"
+                          data-target="#delete_asset_{{ $article->id }}">
                           <i class="fas fa-trash-alt m-r-5"></i> Supprimer
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </td>
                 </tr>
+
+                {{-- Modale --}}
+                <div id="delete_asset_{{ $article->id }}" class="modal fade delete-modal" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body text-center">
+                        <img src="{{ asset('back_auth/assets/img/sent.png') }}" alt="" width="50" height="46" />
+                        <h3 class="delete_class">
+                          Etes vous sûr de vouloir supprimer cet article ?
+                        </h3>
+                        <div class="m-t-20">
+                          <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+                          <form action="{{ route('article.destroy', $article) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               @endforeach
+
               </tbody>
             </table>
+
           </div>
         </div>
       </div>
