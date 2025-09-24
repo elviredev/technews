@@ -61,25 +61,48 @@
                         class="action-icon dropdown-toggle"
                         data-toggle="dropdown"
                         aria-expanded="false"
-                      ><i class="fas fa-ellipsis-v ellipse_color"></i
-                        ></a>
+                      >
+                        <i class="fas fa-ellipsis-v ellipse_color"></i>
+                      </a>
                       <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="edit-staff.html"
-                        ><i class="fas fa-pencil-alt m-r-5"></i>
-                          Modifier</a
-                        >
-                        <a
-                          class="dropdown-item"
-                          href="#"
+                        <a class="dropdown-item" href="{{ route('author.edit', $author) }}">
+                          <i class="fas fa-pencil-alt m-r-5"></i>
+                          Modifier
+                        </a>
+                        <button
+                          class="dropdown-item text-danger"
                           data-toggle="modal"
-                          data-target="#delete_asset"
-                        ><i class="fas fa-trash-alt m-r-5"></i>
-                          Supprimer</a
-                        >
+                          data-target="#delete_asset_{{ $author->id }}">
+                          <i class="fas fa-trash-alt m-r-5"></i> Supprimer
+                        </button>
                       </div>
                     </div>
                   </td>
                 </tr>
+
+                {{-- Modale --}}
+                <div id="delete_asset_{{ $author->id }}" class="modal fade delete-modal" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body text-center">
+                        <img src="{{ asset('back_auth/assets/img/sent.png') }}" alt="" width="50" height="46" />
+                        <h3 class="delete_class">
+                          Etes vous sûr de vouloir supprimer cet auteur ?
+                        </h3>
+                        <div class="m-t-20">
+                          <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+                          <form action="{{ route('author.destroy', $author) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               @endforeach
               </tbody>
             </table>

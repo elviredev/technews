@@ -5,7 +5,9 @@
 @section('dashboard-header')
   <div class="row align-items-center">
     <div class="col">
-      <h3 class="page-title mt-5">Ajouter un auteur</h3>
+      <h3 class="page-title mt-5">
+        {{ isset($author) ? 'Modifier' : 'Ajouter' }} un auteur
+      </h3>
     </div>
   </div>
 @endsection
@@ -13,8 +15,9 @@
 @section('dashboard-content')
   <div class="row">
     <div class="col-lg-12">
-      <form action="{{ route('author.store') }}" method="POST">
+      <form action="{{ isset($author) ? route('author.update', $author) : route('author.store') }}" method="POST">
         @csrf
+        @if(isset($author)) @method('PUT') @endif
 
         <div class="row formtype">
           <div class="col-md-4">
@@ -24,7 +27,7 @@
                 class="form-control @error('name') is-invalid @enderror"
                 type="text"
                 name="name"
-                value="{{ old('name') }}"
+                value="{{ old('name', $author->name ?? '') }}"
               />
               @error('name')
                 <p class="text-danger fs-md">{{ $message }}</p>
@@ -39,7 +42,7 @@
                 class="form-control @error('email') is-invalid @enderror"
                 type="email"
                 name="email"
-                value="{{ old('email') }}"
+                value="{{ old('email', $author->email ?? '') }}"
               />
               @error('email')
                 <p class="text-danger fs-md">{{ $message }}</p>

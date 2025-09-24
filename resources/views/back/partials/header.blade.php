@@ -3,7 +3,7 @@
     <a href="{{ route('dashboard') }}" class="logo">
       <img
         class="rounded-circle"
-        src="{{ asset('storage/' . Auth::user()->image) }}"
+        src="{{ isset(Auth::user()->image) ? asset('storage/' . Auth::user()->image) : asset('back_auth/assets/img/no_image.jpg') }}"
         width="50"
         height="70"
         alt="logo"
@@ -13,7 +13,7 @@
     <a href="{{ route('dashboard') }}" class="logo logo-small d-none d-lg-block">
       <img
         class="rounded-circle"
-        src="{{ asset('storage/' . Auth::user()->image) }}"
+        src="{{ isset(Auth::user()->image) ? asset('storage/' . Auth::user()->image) : asset('back_auth/assets/img/no_image.jpg') }}"
         alt="Logo"
         width="30"
         height="30"
@@ -31,7 +31,7 @@
               <span class="user-img"
               ><img
                   class="rounded-circle"
-                  src="{{ asset('storage/' . Auth::user()->image) }}"
+                  src="{{ isset(Auth::user()->image) ? asset('storage/' . Auth::user()->image) : asset('back_auth/assets/img/no_image.jpg') }}"
                   width="31"
                   alt="avatar"
                 /></span>
@@ -40,7 +40,7 @@
         <div class="user-header">
           <div class="avatar avatar-sm">
             <img
-              src="{{ asset('storage/' . Auth::user()->image) }}"
+              src="{{ isset(Auth::user()->image) ? asset('storage/' . Auth::user()->image) : asset('back_auth/assets/img/no_image.jpg') }}"
               alt="User Image"
               class="avatar-img rounded-circle"
             />
