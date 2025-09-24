@@ -2273,7 +2273,7 @@ html.menu-opened body {
 }
 
 .author-widget {
-  margin-bottom: 30px;
+  margin: 30px 0;
   background-color: #fff;
   padding: 20px;
   border: 1px solid #e7e7e7
@@ -4663,7 +4663,7 @@ h3.page-sub-title {
 
 .blog-single-post {
   position: relative;
-  margin: 0 0 50px;
+  margin: 0 0 30px;
   background-color: #fff;
   border: 1px solid #e7e7e7;
   border-radius: 4px;

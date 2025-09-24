@@ -47,8 +47,7 @@ class Article extends Model
     return 'slug';
   }
 
-  // afficher les images sous forme d'URL
-
+  // Permet de définir les images sous forme d'URL
   public function imageUrl(): string
   {
     return Storage::url($this->image);

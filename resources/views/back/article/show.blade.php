@@ -24,6 +24,13 @@
             <p>{{ $article->description }}</p>
           </div>
         </article>
+
+        <div class="widget">
+          @foreach($article->tags as $tag)
+            <label class="label label-info btn btn-primary" for="">{{ $tag->name }}</label>
+          @endforeach
+        </div>
+
         <div class="widget author-widget clearfix">
           <h3>A propos de l'auteur</h3>
           <div class="about-author">

@@ -94,6 +94,34 @@
             </div>
           </div>
 
+          {{-- Tags --}}
+          {{-- Afficher les tags en cas de modification --}}
+{{--          @if(isset($article))--}}
+{{--              <div class="col-md-12">--}}
+{{--                @foreach($article->tags as $tag)--}}
+{{--                  <label class="label label-info btn btn-primary" for="">{{ $tag->name }}</label>--}}
+{{--                @endforeach--}}
+{{--              </div>--}}
+{{--          @endif--}}
+
+          {{-- Tags (création & modification) --}}
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="tags">Tags</label>
+              <input
+                type="text"
+                class="form-control"
+                id="tags"
+                name="tags"
+                data-role="tagsinput"
+                value="{{ old('tags', isset($article) ? $article->tags->pluck('name')->implode(',') : '') }}"
+              >
+              @if($errors->has('tags'))
+                 <span class="text-danger">{{ $errors->first('tags') }}</span>
+              @endif
+            </div>
+          </div>
+
           <div class="col-md-4">
             <div class="form-group">
               <h6>Publication</h6>
@@ -179,7 +207,6 @@
           </div>
           <button type="submit" class="btn btn-primary buttonedit1">Enregistrer l'article</button>
         </div>
-
       </form>
     </div>
   </div>

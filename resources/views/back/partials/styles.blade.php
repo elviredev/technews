@@ -20,15 +20,52 @@
 {{--@vite(['resources/css/app.css', 'resources/js/app.js'])--}}
 
 <style>
+  /* Style du conteneur généré par bootstrap-tagsinput */
+  .bootstrap-tagsinput {
+    display: block !important;   /* au lieu de inline-block */
+    width: 100% !important;      /* occupe toute la largeur */
+    min-width: 0;                /* important dans les flexbox */
+    box-sizing: border-box;
+    padding: 0.375rem 0.75rem;   /* même padding qu'un .form-control */
+    border: 1px solid #ced4da;   /* même bordure qu'un input */
+    border-radius: 0.375rem;     /* idem */
+    background-color: #fff;
+    line-height: 1.5;
+  }
+
+  /* Style des tags */
   .bootstrap-tagsinput .tag {
     margin-right: 2px;
     color: #ffffff;
     background: #2196f3;
     padding: 3px 7px;
     border-radius: 3px;
+    display: inline-block;
   }
 
-  .bootstrap-tagsinput {
-    width: 100%;
+  /* Croix de suppression */
+  .bootstrap-tagsinput .tag [data-role="remove"] {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  .bootstrap-tagsinput .tag [data-role="remove"]:after {
+    content: "×"; /* caractère croix */
+    padding: 0 2px;
+  }
+
+  .bootstrap-tagsinput .tag [data-role="remove"]:hover {
+    color: #ff0000; /* rouge au survol */
+  }
+
+  /* Input interne du plugin */
+  .bootstrap-tagsinput input {
+    border: none;
+    outline: none;
+    background: transparent;
+    box-shadow: none;
+    width: auto !important;  /* pas fixe, s'adapte */
+    min-width: 100px;        /* largeur min quand vide */
+    flex: 1;                 /* s'étend dans le conteneur */
   }
 </style>

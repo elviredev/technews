@@ -100,7 +100,7 @@ class ArticleController extends Controller
 
       // Tags
       $tags = explode(',', $request->tags);
-      $article->tag($tags);
+      $article->retag($tags);
 
       return redirect()->route('article.index')->with('success', 'Votre article a bien été modifié 💛');
     }

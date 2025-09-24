@@ -30,6 +30,7 @@ class StoreArticleRequest extends FormRequest
           'isComment' => ['required', 'boolean'],
           'isSharable' => ['required', 'boolean'],
           'category_id' => ['required', 'exists:categories,id'],
+          'tags' => ['nullable', 'string'],
         ];
     }
 }
