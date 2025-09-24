@@ -94,16 +94,6 @@
             </div>
           </div>
 
-          {{-- Tags --}}
-          {{-- Afficher les tags en cas de modification --}}
-{{--          @if(isset($article))--}}
-{{--              <div class="col-md-12">--}}
-{{--                @foreach($article->tags as $tag)--}}
-{{--                  <label class="label label-info btn btn-primary" for="">{{ $tag->name }}</label>--}}
-{{--                @endforeach--}}
-{{--              </div>--}}
-{{--          @endif--}}
-
           {{-- Tags (création & modification) --}}
           <div class="col-md-12">
             <div class="form-group">

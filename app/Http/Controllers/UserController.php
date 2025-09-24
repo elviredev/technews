@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -12,7 +13,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('back.author.index');
+        return view('back.author.index', [
+          'authors' => User::where('role', 'author')->get()
+        ]);
     }
 
     /**
@@ -20,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+      return view('back.author.create');
     }
 
     /**
@@ -28,7 +31,12 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        //
+      $validated = $request->validated();
+      $validated['password'] = Hash::make('12345678');
+
+      User::create($validated);
+
+      return redirect()->route('author.index')->with('success', 'Auteur ajouté avec succès 🤩');
     }
 
     /**
