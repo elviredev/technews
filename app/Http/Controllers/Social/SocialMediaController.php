@@ -14,7 +14,9 @@ class SocialMediaController extends Controller
      */
     public function index()
     {
-        return view('back.social.index');
+        return view('back.social.index', [
+          'socials' => SocialMedia::all()
+        ]);
     }
 
     /**
@@ -22,7 +24,7 @@ class SocialMediaController extends Controller
      */
     public function create()
     {
-        //
+      return view('back.social.create');
     }
 
     /**
@@ -30,38 +32,37 @@ class SocialMediaController extends Controller
      */
     public function store(StoreSocialMediaRequest $request)
     {
-        //
+      $validated = $request->validated();
+      SocialMedia::create($validated);
+      return redirect()->route('social.index')->with('success', 'Réseau Social ajouté avec succès 🤩');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(SocialMedia $socialMedia)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SocialMedia $socialMedia)
+    public function edit(SocialMedia $social)
     {
-        //
+      return view('back.social.create', compact('social'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSocialMediaRequest $request, SocialMedia $socialMedia)
+    public function update(UpdateSocialMediaRequest $request, SocialMedia $social)
     {
-        //
+      $validated = $request->validated();
+      $social->update($validated);
+      return redirect()->route('social.index')->with('success', 'Réseau Social modifié avec succès 💛');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SocialMedia $socialMedia)
+    public function destroy(SocialMedia $social)
     {
-        //
+      $social->delete();
+
+      return back()->with('success', 'Réseau Social supprimé avec succès 💚');
     }
 }
