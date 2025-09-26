@@ -27,7 +27,7 @@ class SettingsController extends Controller
   /**
    * @desc Modifier les données Paramètres du site
    * Si l’enregistrement avec id=1 n’existe pas, Laravel le crée automatiquement
-   * Si l'entrée avec ID=1 existe, elle est mise à jour
+   * Si l'entrée avec ID=1 existe, elle est mise à jour.
    * @param SettingsRequest $request
    * @return RedirectResponse
    */
