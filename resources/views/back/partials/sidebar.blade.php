@@ -71,7 +71,7 @@
         </li>
 
         <li>
-          <a href="settings.html"
+          <a href="{{ route('settings.index') }}"
           ><i class="fas fa-cog"></i> <span>Paramètres</span></a
           >
         </li>
