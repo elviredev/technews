@@ -7,6 +7,10 @@
 ### 📄 Base de données MySQL
 
 ### 📚 Librairies, packages
-- Alerte : **iziToast CDN**
-- Slug : **spatie/laravel-sluggable**
-- Tag : **rtconner/laravel-tagging**
+- ☢️ Alerte : **iziToast CDN**
+- ➰Slug : **spatie/laravel-sluggable**
+- #️⃣ Tag : **rtconner/laravel-tagging**
+- ⚠️ Pages d'erreurs : 
+```bash
+php artisan vendor:publish --tag=laravel-errors
+```

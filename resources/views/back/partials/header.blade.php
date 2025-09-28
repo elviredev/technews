@@ -28,13 +28,14 @@
 
     <li class="nav-item dropdown has-arrow">
       <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <span class="user-img"
-              ><img
+              <span class="user-img">
+                <img
                   class="rounded-circle"
                   src="{{ isset(Auth::user()->image) ? asset('storage/' . Auth::user()->image) : asset('back_auth/assets/img/no_image.jpg') }}"
                   width="31"
                   alt="avatar"
-                /></span>
+                />
+              </span>
       </a>
       <div class="dropdown-menu">
         <div class="user-header">
@@ -47,11 +48,11 @@
           </div>
           <div class="user-text">
             <h6>{{ Auth::user()->name }}</h6>
-            <p class="text-muted mb-0">Administrateur</p>
+            <p class="text-muted mb-0">{{ Auth::user()->role_names }}</p>
           </div>
         </div>
         <a class="dropdown-item" href="{{ route('profile.edit') }}">Profil</a>
-        <a class="dropdown-item" href="settings.html">Paramètre</a>
+        <a class="dropdown-item" href="{{ route('settings.index') }}">Paramètre</a>
         <form action="{{ route('logout') }}" method="POST">
           @csrf
 

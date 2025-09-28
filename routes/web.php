@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('back.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'checkRole:admin,author'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -23,19 +23,24 @@ Route::middleware('auth')->group(function () {
 });
 
 // Categories
-Route::resource('/category', CategoryController::class);
+Route::resource('/category', CategoryController::class)
+  ->middleware('admin');
 
 // Articles
-Route::resource('/article', ArticleController::class);
+Route::resource('/article', ArticleController::class)->middleware('checkRole:admin,author');
 
 // Auteurs
-Route::resource('/author', UserController::class);
+Route::resource('/author', UserController::class)
+  ->middleware('admin');
 
 // Social Media
-Route::resource('/social', SocialMediaController::class);
+Route::resource('/social', SocialMediaController::class)
+  ->middleware('admin');
 
 // Settings
-Route::get('/parametres', [SettingsController::class, 'index'])->name('settings.index');
-Route::put('/modifier/parametres', [SettingsController::class, 'update'])->name('settings.update');
+Route::get('/parametres', [SettingsController::class, 'index'])->name('settings.index')
+  ->middleware('admin');
+Route::put('/modifier/parametres', [SettingsController::class, 'update'])->name('settings.update')
+  ->middleware('admin');
 
 require __DIR__.'/auth.php';
