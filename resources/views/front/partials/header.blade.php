@@ -4,7 +4,7 @@
   >
     <a href="index.html" class="navbar-brand d-block d-lg-none">
       <h1 class="m-0 display-4 text-uppercase text-info">
-        Biz<span class="text-white font-weight-normal">News</span>
+        Tech<span class="text-white font-weight-normal">News</span>
       </h1>
     </a>
     <button
@@ -27,12 +27,11 @@
             href="#"
             class="nav-link dropdown-toggle"
             data-toggle="dropdown"
-          >Categorie</a
-          >
+          >Categories</a>
           <div class="dropdown-menu rounded-0 m-0">
-            <a href="category.html" class="dropdown-item">National</a>
-            <a href="category.html" class="dropdown-item">International</a>
-            <a href="category.html" class="dropdown-item">Sport</a>
+            @foreach($global_categories as $category)
+              <a href="category.html" class="dropdown-item">{{ $category->name }}</a>
+            @endforeach
           </div>
         </div>
         <a href="contact.html" class="nav-item nav-link">Contact</a>

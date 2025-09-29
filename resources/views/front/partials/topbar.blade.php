@@ -4,9 +4,10 @@
       <nav class="navbar navbar-expand-sm bg-dark p-0">
         <ul class="navbar-nav ml-n2">
           <li class="nav-item border-right border-secondary">
-            <a class="nav-link text-body small" href="#"
-            >Lundi, Janvier 1, 2023</a
-            >
+            @php $time = \Carbon\Carbon::now() @endphp
+            <a class="nav-link text-body small" href="#">
+              {{ ucfirst($time->translatedFormat('l')) }}, {{ $time->isoFormat('LL') }}
+            </a>
           </li>
 
           <li class="nav-item">
@@ -18,36 +19,13 @@
     <div class="col-lg-3 text-right d-none d-md-block">
       <nav class="navbar navbar-expand-sm bg-dark p-0">
         <ul class="navbar-nav ml-auto mr-n2">
-          <li class="nav-item">
-            <a class="nav-link text-body" href="#"
-            ><small class="fab fa-twitter"></small
-              ></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-body" href="#"
-            ><small class="fab fa-facebook-f"></small
-              ></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-body" href="#"
-            ><small class="fab fa-linkedin-in"></small
-              ></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-body" href="#"
-            ><small class="fab fa-instagram"></small
-              ></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-body" href="#"
-            ><small class="fab fa-google-plus-g"></small
-              ></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-body" href="#"
-            ><small class="fab fa-youtube"></small
-              ></a>
-          </li>
+          @foreach($global_socials as $item)
+            <li class="nav-item">
+              <a class="nav-link text-body" href="{{ $item->link }}">
+                <small class="{{ $item->icon }}"></small>
+              </a>
+            </li>
+          @endforeach
         </ul>
       </nav>
     </div>
@@ -61,9 +39,7 @@
       </a>
     </div>
     <div class="col-lg-8 text-center text-lg-right">
-      <a href="https://freewebsitecode.com"
-      ><img class="img-fluid" src="img/ads-728x90.png" alt=""
-        /></a>
+      <a href="https://freewebsitecode.com"><img class="img-fluid" src="img/ads-728x90.png" alt=""/></a>
     </div>
   </div>
 </div>

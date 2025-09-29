@@ -3,16 +3,17 @@
 use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\Social\SocialMediaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Page d'accueil FRONTEND
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Dashboard BACKEND
 Route::get('/dashboard', [DashboardController::class, 'index'])
   ->middleware(['auth', 'verified', 'checkRole:admin,author'])
   ->name('dashboard');
@@ -23,22 +24,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Categories
+// Categories BACKEND
 Route::resource('/category', CategoryController::class)
   ->middleware('admin');
 
-// Articles
+// Articles BACKEND
 Route::resource('/article', ArticleController::class)->middleware('checkRole:admin,author');
 
-// Auteurs
+// Auteurs BACKEND
 Route::resource('/author', UserController::class)
   ->middleware('admin');
 
-// Social Media
+// Social Media BACKEND
 Route::resource('/social', SocialMediaController::class)
   ->middleware('admin');
 
-// Settings
+// Settings BACKEND
 Route::get('/parametres', [SettingsController::class, 'index'])->name('settings.index')
   ->middleware('admin');
 Route::put('/modifier/parametres', [SettingsController::class, 'update'])->name('settings.update')

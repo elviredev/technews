@@ -2,13 +2,13 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>DiamilTechNews</title>
+  <title>TechNews</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta content="Free HTML Templates" name="keywords" />
   <meta content="Free HTML Templates" name="description" />
 
   <!-- Favicon -->
-  <link href="{{ asset('front/img/favicon.ico') }}" rel="icon" />
+  <link href="{{ asset('front/img/logo-no-bg.png') }}" rel="icon" />
 
   <!-- Liens du head -->
   @include('front.partials.styles')
