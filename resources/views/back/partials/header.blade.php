@@ -1,6 +1,6 @@
 <div class="header">
   <div class="header-left ">
-    <a href="{{ route('dashboard') }}" class="logo">
+    <a href="{{ route('profile.edit') }}" class="logo">
       <img
         class="rounded-circle"
         src="{{ isset(Auth::user()->image) ? asset('storage/' . Auth::user()->image) : asset('back_auth/assets/img/no_image.jpg') }}"
@@ -27,7 +27,7 @@
   <ul class="nav user-menu">
 
     <li class="nav-item dropdown has-arrow">
-      <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+      <a href="{{ route('profile.edit') }}" class="dropdown-toggle nav-link" data-toggle="dropdown">
               <span class="user-img">
                 <img
                   class="rounded-circle"

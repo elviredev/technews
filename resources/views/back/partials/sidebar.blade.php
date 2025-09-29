@@ -6,8 +6,7 @@
           <a href="{{ route('dashboard') }}">
             <i class="fas fa-tachometer-alt"></i>
             <span>Dashboard</span>
-          </a
-          >
+          </a>
         </li>
         <li class="list-divider"></li>
         <li class="submenu">

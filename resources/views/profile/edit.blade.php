@@ -20,8 +20,12 @@
       <div class="profile-header ">
         <div class="row align-items-center">
           <div class="col-auto profile-image">
-            <a href="#">
-              <img class="rounded-circle" alt="User Image" src="{{ isset(Auth::user()->image) ? asset('storage/' . Auth::user()->image) : asset('back_auth/assets/img/no_image.jpg') }}">
+            <a href="{{ route('profile.edit') }}">
+              <img
+                class="rounded-circle"
+                alt="User Image"
+                src="{{ isset(Auth::user()->image) ? asset('storage/' . Auth::user()->image) : asset('back_auth/assets/img/no_image.jpg') }}"
+              >
             </a>
           </div>
           <div class="col ml-md-n2 profile-user-info">
