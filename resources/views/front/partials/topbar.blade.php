@@ -11,7 +11,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-body small" href="#">Login</a>
+            <a class="nav-link text-body small" href="{{ route('login') }}">Login</a>
           </li>
         </ul>
       </nav>
