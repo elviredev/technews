@@ -51,7 +51,11 @@
                     {{ $time->isoFormat('LL') }}
                   </a>
                 </div>
-                <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="">{{ $article->title }}</a>
+                <a
+                  class="h2 m-0 text-white text-uppercase font-weight-bold"
+                  href="{{ route('article.details', $article->slug) }}">
+                  {{ $article->title }}
+                </a>
               </div>
             </div>
           @endforeach

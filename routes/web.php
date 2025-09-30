@@ -3,6 +3,7 @@
 use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Settings\SettingsController;
@@ -12,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 
 // Page d'accueil FRONTEND
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Page de détails d'un article FRONTEND
+Route::get('/details/{slug}', [DetailsController::class, 'index'])->name('article.details');
 
 // Dashboard BACKEND
 Route::get('/dashboard', [DashboardController::class, 'index'])
