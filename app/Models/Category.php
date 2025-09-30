@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -37,5 +38,14 @@ class Category extends Model
   public function getRouteKeyName(): string
   {
     return 'slug';
+  }
+
+  /**
+   * @desc Une catégorie peut avoir plusieurs articles rattachés
+   * @return HasMany
+   */
+  public function articles(): HasMany
+  {
+    return $this->hasMany(Article::class, 'category_id', 'id');
   }
 }
