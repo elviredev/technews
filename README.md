@@ -10,6 +10,7 @@
 - ☢️ Alerte : **iziToast CDN**
 - ➰Slug : **spatie/laravel-sluggable**
 - #️⃣ Tag : **rtconner/laravel-tagging**
+- 🖼️ Image (Resize et compression) : **intervention/image**
 - ⚠️ Pages d'erreurs : 
 ```bash
 php artisan vendor:publish --tag=laravel-errors

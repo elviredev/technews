@@ -9,6 +9,8 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ArticleController extends Controller
 {
@@ -44,9 +46,28 @@ class ArticleController extends Controller
       // $validated contient les champs du formulaire validés
       $validated = $request->validated();
 
-      // Utiliser $validated plutôt que request puis merger avec l'image et l'auteur
       if ($request->hasFile('image')) {
-        $validated['image'] = $request->file('image')->store('articles', 'public');
+        $imageFile = $request->file('image');
+
+        // Générer un nom unique
+        $filename = uniqid() . '.' . $imageFile->getClientOriginalExtension();
+
+        // Créer le chemin
+        $path = "articles/{$filename}";
+
+        // Créer le manager (driver GD ou Imagick)
+        $manager = new ImageManager(new Driver());
+
+        // Intervention v3 : lecture + resize + compression
+        $image = $manager->read($imageFile)
+          ->scale(width: 800) // redimensionne la largeur à 800px max
+          ->toJpeg(80); // compresse en jpeg qualité 80%
+
+        // Sauvegarder dans le disque public
+        Storage::disk('public')->put($path, $image);
+
+        // Ajouter dans les données validées
+        $validated['image'] = $path;
       }
 
       $validated['author_id'] = Auth::id();
@@ -95,8 +116,22 @@ class ArticleController extends Controller
           Storage::disk('public')->delete($article->image);
         }
 
-        // Sauvegarder la nouvelle
-        $validated['image'] = $request->file('image')->store('articles', 'public');
+        $imageFile = $request->file('image');
+        $filename = uniqid() . '.' . $imageFile->getClientOriginalExtension();
+        $path = "articles/{$filename}";
+
+        // Créer le manager avec GD
+        $manager = new ImageManager(new Driver());
+
+        // Lecture + resize + compression
+        $image = $manager->read($imageFile)
+          ->scale(width: 800)   // largeur max 800px
+          ->toJpeg(80); // compression qualité 80%
+
+        // Sauvegarde
+        Storage::disk('public')->put($path, (string) $image);
+
+        $validated['image'] = $path;
       }
 
       // Mise à jour de l'article
