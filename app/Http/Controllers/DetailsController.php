@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCommentRequest;
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -16,8 +18,8 @@ class DetailsController extends Controller
    */
   public function index(string $slug)
   {
-    // Récupérer l'article par son slug
-    $article = Article::where('slug', $slug)->firstOrFail();
+    // Récupérer l'article par son slug avec les commentaires
+    $article = Article::where('slug', $slug)->with('comments')->firstOrFail();
 
     // Ajoute le nb de vues de l'article courant
     $new_view = $article->views + 1;
@@ -25,5 +27,15 @@ class DetailsController extends Controller
     $article->update();
 
     return view('front.details', compact('article'));
+  }
+
+  public function storeComment(StoreCommentRequest $request, int $id)
+  {
+    $validated = $request->validated();
+
+    $article = Article::findOrFail($id);
+    $article->comments()->create($validated);
+
+    return back()->with('success', 'Commentaire envoyé avec succès 💜');
   }
 }

@@ -20,7 +20,7 @@
       id="navbarCollapse"
     >
       <div class="navbar-nav mr-auto py-0">
-        <a href="index.html" class="nav-item nav-link active">Accueil</a>
+        <a href="{{ route('home') }}" class="nav-item nav-link active">Accueil</a>
         <a href="single.html" class="nav-item nav-link">Post</a>
         <div class="nav-item dropdown">
           <a

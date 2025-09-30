@@ -135,6 +135,9 @@ small {
   font-size: 80%;
 }
 
+.fs-xs { font-size: 12px; }
+.fs-md { font-size: 14px; }
+
 sub,
 sup {
   position: relative;

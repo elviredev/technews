@@ -6,6 +6,7 @@ use Conner\Tagging\Taggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -53,13 +54,30 @@ class Article extends Model
     return Storage::url($this->image);
   }
 
+  /**
+   * @desc Un article appartient à une catégorie
+   * @return BelongsTo
+   */
   public function category(): BelongsTo
   {
     return $this->belongsTo(Category::class, 'category_id', 'id');
   }
 
+  /**
+   * @desc Un article appartient à un auteur
+   * @return BelongsTo
+   */
   public function author(): BelongsTo
   {
     return $this->belongsTo(User::class, 'author_id', 'id');
+  }
+
+  /**
+   * @desc Un article a plusieurs commentaires
+   * @return HasMany
+   */
+  public function comments(): HasMany
+  {
+    return $this->hasMany(Comment::class, 'article_id', 'id');
   }
 }

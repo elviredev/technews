@@ -67,41 +67,53 @@
       </div>
       <div class="d-flex align-items-center">
         <span class="ml-3"><i class="far fa-eye mr-2"></i>{{ $article->views }}</span>
-        <span class="ml-3"><i class="far fa-comment mr-2"></i>123</span>
+        <span class="ml-3">
+          <i class="far fa-comment mr-2"></i>{{ $article->comments->count() }}
+        </span>
       </div>
     </div>
   </div>
   <!-- News Detail End -->
 
   <!-- Comment List Start -->
-  <div class="mb-3">
-    <div class="section-title mb-0">
-      <h4 class="m-0 text-uppercase font-weight-bold">3 Comments</h4>
-    </div>
-    <div class="bg-white border border-top-0 p-4">
-      <div class="media mb-4">
-        <img
-          src="img/user.jpg"
-          alt="Image"
-          class="img-fluid mr-3 mt-1"
-          style="width: 45px"
-        />
-        <div class="media-body">
-          <h6>
-            <a class="text-secondary font-weight-bold" href=""
-            >John Doe</a
-            >
-            <small><i>01 Jan 2045</i></small>
-          </h6>
-          <p>
-            Diam amet duo labore stet elitr invidunt ea clita ipsum
-            voluptua, tempor labore accusam ipsum et no at. Kasd diam
-            tempor rebum magna dolores sed sed eirmod ipsum.
-          </p>
-        </div>
+  @if($article->isComment)
+    <div class="mb-3">
+      <div class="section-title mb-0">
+        <h4 class="m-0 text-uppercase font-weight-bold">{{ $article->comments->count() }} commentaires</h4>
+      </div>
+      <div class="bg-white border border-top-0 p-4">
+        @if(count($article->comments))
+          @foreach($article->comments as $comment)
+            <div class="media mb-4">
+              <img
+                src="{{ asset('back_auth/assets/img/logo.png') }}"
+                alt="Image"
+                class="img-fluid mr-3 mt-1"
+                style="width: 45px"
+              />
+              <div class="media-body">
+                <h6>
+                  <a class="text-secondary font-weight-bold" href="">{{ $comment->name }}</a>
+
+                  <small>
+                    <i>
+                      @php $time = $comment->created_at @endphp
+                      {{ $time->isoFormat('LL') }}
+                    </i>
+                  </small>
+                </h6>
+                <p>
+                  {{ $comment->message }}
+                </p>
+              </div>
+            </div>
+          @endforeach
+        @endif
+
       </div>
     </div>
-  </div>
+  @endif
+
   <!-- Comment List End -->
 
   <!-- Comment Form Start -->
@@ -111,25 +123,38 @@
         Laissez un commentaire
       </h4>
     </div>
+
+    @if(session('success'))
+      <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
     <div class="bg-white border border-top-0 p-4">
-      <form>
+      <form action="{{ route('article.comment', $article->id) }}" method="POST">
+        @csrf
+
         <div class="form-row">
           <div class="col-sm-6">
             <div class="form-group">
               <label for="name">Nom *</label>
-              <input type="text" class="form-control" id="name" />
+              <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" />
+              @error('name')
+                <p class="text-danger fs-md">{{ $message }}</p>
+              @enderror
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <label for="email">Email *</label>
-              <input type="email" class="form-control" id="email" />
+              <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" />
+              @error('email')
+                <p class="text-danger fs-md">{{ $message }}</p>
+              @enderror
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="website">Site web</label>
-          <input type="url" class="form-control" id="website" />
+          <input type="url" class="form-control" id="website" name="website" value="{{ old('website') }}" />
         </div>
 
         <div class="form-group">
@@ -138,8 +163,12 @@
             id="message"
             cols="30"
             rows="5"
-            class="form-control"
-          ></textarea>
+            class="form-control @error('message') is-invalid @enderror"
+            name="message"
+          >{{ old('message') }}</textarea>
+          @error('message')
+            <p class="text-danger fs-md">{{ $message }}</p>
+          @enderror
         </div>
         <div class="form-group mb-0">
           <input

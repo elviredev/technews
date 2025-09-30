@@ -17,6 +17,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Page de détails d'un article FRONTEND
 Route::get('/details/{slug}', [DetailsController::class, 'index'])->name('article.details');
 
+// Commentaires sur un article FRONTEND
+Route::post('/comment/{id}', [DetailsController::class, 'storeComment'])->name('article.comment');
+
 // Dashboard BACKEND
 Route::get('/dashboard', [DashboardController::class, 'index'])
   ->middleware(['auth', 'verified', 'checkRole:admin,author'])
