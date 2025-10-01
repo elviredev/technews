@@ -22,7 +22,7 @@
         </li>
 
         <li>
-          <a href="all-comments.html">
+          <a href="{{ route('comment.index') }}">
             <i class="fe fe-table"></i>
             <span>Commentaires</span>
           </a>

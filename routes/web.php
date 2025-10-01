@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\HomeController;
@@ -51,5 +52,9 @@ Route::get('/parametres', [SettingsController::class, 'index'])->name('settings.
   ->middleware('admin');
 Route::put('/modifier/parametres', [SettingsController::class, 'update'])->name('settings.update')
   ->middleware('admin');
+
+// Commentaires BACKEND
+Route::resource('/comment', CommentController::class);
+Route::put('/comment/unlock/{id}', [CommentController::class, 'unlock'])->name('comment.unlock');
 
 require __DIR__.'/auth.php';
