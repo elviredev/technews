@@ -22,6 +22,13 @@ class HomeController extends Controller
       ->limit(10)
       ->get();
 
+    // Liste des articles populaires
+    $popular_articles = Article::where('isActive', 1)
+      ->orderBy('created_at', 'desc')
+      ->orderBy('views', 'desc')
+      ->limit(10)
+      ->get();
+
     // Catégories actives ayant au moins 1 article
     $categories = Category::where('isActive', 1)
       ->orderBy('created_at', 'desc')
@@ -29,6 +36,6 @@ class HomeController extends Controller
       ->has('articles')
       ->get();
 
-    return view('front.home', compact('articles', 'categories'));
+    return view('front.home', compact('articles', 'categories', 'popular_articles'));
   }
 }
