@@ -41,7 +41,7 @@
     />
     <div class="bg-white border border-top-0 p-4">
       <div class="mb-3">
-        <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="">{{ $article->category->name }}</a>
+        <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="{{ route('category.articles', $article->category->slug) }}">{{ $article->category->name }}</a>
         <a class="text-body" href="">
           @php $time = $article->created_at @endphp
           {{ $time->isoFormat('LL') }}

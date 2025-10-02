@@ -46,6 +46,7 @@ class Category extends Model
    */
   public function articles(): HasMany
   {
-    return $this->hasMany(Article::class, 'category_id', 'id');
+    return $this->hasMany(Article::class, 'category_id', 'id')
+                ->where('isActive', 1);
   }
 }

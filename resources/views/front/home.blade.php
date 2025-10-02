@@ -45,7 +45,7 @@
               />
               <div class="overlay">
                 <div class="mb-2">
-                  <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="">{{ $article->category->name }}</a>
+                  <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="{{ route('category.articles', $article->category->slug) }}">{{ $article->category->name }}</a>
                   <a class="text-white" href="">
                     @php $time = $article->created_at @endphp
                     {{ $time->isoFormat('LL') }}
@@ -86,7 +86,7 @@
                 />
                 <div class="overlay">
                   <div class="mb-2">
-                    <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="">{{ $article->category->name }}</a>
+                    <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="{{ route('category.articles', $article->category->slug) }}">{{ $article->category->name }}</a>
                     <a class="text-white" href="">
                       @php $time = $article->created_at @endphp
                       <small>
@@ -124,7 +124,7 @@
             />
             <div class="overlay">
               <div class="mb-2">
-                <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="">{{ $article->category->name }}</a>
+                <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="{{ route('category.articles', $article->category->slug) }}">{{ $article->category->name }}</a>
                 <p class="text-white">
                   <small>
                     @php $time = $article->created_at @endphp
@@ -153,7 +153,7 @@
           <h4 class="m-0 text-uppercase font-weight-bold">
             {{ $category->name }}
           </h4>
-          <a class="text-secondary font-weight-medium text-decoration-none" href="">Voir tous</a>
+          <a class="text-secondary font-weight-medium text-decoration-none" href="{{ route('category.articles', $article->category->slug) }}">Voir tous</a>
         </div>
       </div>
 

@@ -102,7 +102,7 @@
         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px">
           <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
             <div class="mb-2">
-              <a class="badge badge-info text-uppercase font-weight-semi-bold p-1 mr-2" href="">{{ $article->category->name }}</a>
+              <a class="badge badge-info text-uppercase font-weight-semi-bold p-1 mr-2" href="{{ route('category.articles', $article->category->slug) }}">{{ $article->category->name }}</a>
               <a class="text-body" href="">
                 @php $time = $article->created_at @endphp
                 <small> {{ $time->isoFormat('LL') }}</small>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailsController;
+use App\Http\Controllers\FrontCategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Settings\SettingsController;
@@ -20,6 +21,10 @@ Route::get('/details/{slug}', [DetailsController::class, 'index'])->name('articl
 
 // Commentaires sur un article FRONTEND
 Route::post('/comment/{id}', [DetailsController::class, 'storeComment'])->name('article.comment');
+
+// Page d'une catégorie avec ses articles rattachés FRONTEND
+Route::get('/categorie/{slug}', [FrontCategoryController::class, 'index'])->name('category.articles');
+
 
 // Dashboard BACKEND
 Route::get('/dashboard', [DashboardController::class, 'index'])

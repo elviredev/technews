@@ -30,7 +30,7 @@
           >Categories</a>
           <div class="dropdown-menu rounded-0 m-0">
             @foreach($global_categories as $category)
-              <a href="category.html" class="dropdown-item">{{ $category->name }}</a>
+              <a href="{{ route('category.articles', $category->slug) }}" class="dropdown-item">{{ $category->name }}</a>
             @endforeach
           </div>
         </div>
