@@ -30,10 +30,7 @@
       <div class="col-lg-7 px-0">
         <div class="owl-carousel main-carousel position-relative">
 
-          @foreach($articles as $article)
-            @if($loop->iteration === 4)
-              @break
-            @endif
+          @forelse($articles->take(3) ?? [] as $article)
             <div
               class="position-relative overflow-hidden"
               style="height: 500px"
@@ -58,14 +55,16 @@
                 </a>
               </div>
             </div>
-          @endforeach
+          @empty
+            <p>Aucun article disponible</p>
+          @endforelse
 
         </div>
       </div>
       <div class="col-lg-5 px-0">
         <div class="row mx-0">
 
-          @foreach($articles as $article)
+          @forelse($articles ?? [] as $article)
             {{-- Boucle démarre à partir du 4è item --}}
             @if($loop->iteration < 4)
               @continue
@@ -101,7 +100,9 @@
                 </div>
               </div>
             </div>
-          @endforeach
+          @empty
+            <p>Aucun article disponible</p>
+          @endforelse
 
         </div>
       </div>
@@ -118,7 +119,7 @@
       </div>
       <div class="owl-carousel news-carousel carousel-item-4 position-relative">
 
-        @foreach($popular_articles as $article)
+        @forelse($popular_articles ?? [] as $article)
           <div class="position-relative overflow-hidden" style="height: 300px">
             <img
               class="img-fluid h-100"
@@ -145,17 +146,18 @@
               </a>
             </div>
           </div>
-        @endforeach
+        @empty
+          <p>Aucun article disponible</p>
+        @endforelse
       </div>
     </div>
   </div>
 @endsection
 
-
 @section('main_section')
   <div class="row">
 
-    @foreach($categories as $category)
+    @foreach($categories ?? [] as $category)
       <div class="col-12">
         <div class="section-title">
           <h4 class="m-0 text-uppercase font-weight-bold">
@@ -166,7 +168,6 @@
       </div>
 
       @foreach($category->articles->take(2) as $article)
-
         <div class="col-lg-6">
           <div class="position-relative mb-3">
             <img

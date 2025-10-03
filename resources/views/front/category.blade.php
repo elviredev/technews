@@ -3,7 +3,7 @@
 @section('main_section')
   <div class="row">
 
-    @foreach($category->articles as $article)
+    @forelse($category->articles as $article)
       <div class="col-lg-6">
         <div class="position-relative mb-3">
           <img
@@ -38,7 +38,9 @@
           </div>
         </div>
       </div>
-    @endforeach
+    @empty
+      <h6>Pas d'articles disponibles pour la catégorie <span class="text-info">{{ $category->name }}</span></h6>
+    @endforelse
 
   </div>
 @endsection

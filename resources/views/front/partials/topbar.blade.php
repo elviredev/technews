@@ -19,13 +19,15 @@
     <div class="col-lg-3 text-right d-none d-md-block">
       <nav class="navbar navbar-expand-sm bg-dark p-0">
         <ul class="navbar-nav ml-auto mr-n2">
-          @foreach($global_socials as $item)
+          @forelse($global_socials as $item)
             <li class="nav-item">
               <a class="nav-link text-body" href="{{ $item->link }}">
                 <small class="{{ $item->icon }}"></small>
               </a>
             </li>
-          @endforeach
+          @empty
+            {{-- Rien à afficher si pas de socials --}}
+          @endforelse
         </ul>
       </nav>
     </div>

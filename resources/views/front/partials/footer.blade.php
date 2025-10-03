@@ -33,7 +33,7 @@
           <div class="mb-2">
             <a
               class="badge badge-info text-uppercase font-weight-semi-bold p-1 mr-2"
-              href="{{ route('category.articles', $category->slug) }}"
+              href="{{ route('category.articles', $popular_article->category->slug) }}"
             >
               {{ $popular_article->category->name }}
             </a>

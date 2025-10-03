@@ -3,7 +3,7 @@
 @section('main_section')
   <div class="row">
 
-    @foreach($articles as $article)
+    @forelse($articles as $article)
       <div class="col-lg-6">
         <div class="position-relative mb-3">
           <img
@@ -49,7 +49,10 @@
           </div>
         </div>
       </div>
-    @endforeach
+
+    @empty
+      <h6>Aucun résultats pour la recherche <span class="text-info">{{ $search }}</span> demandée.</h6>
+    @endforelse
 
   </div>
 @endsection

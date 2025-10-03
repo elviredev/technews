@@ -24,7 +24,7 @@ class SearchController extends Controller
         ->orWhere('description', 'like', "%$search%")
         ->get();
 
-    return view('front.search', compact('articles'));
+    return view('front.search', compact('articles', 'search'));
   }
 
   /**

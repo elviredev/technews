@@ -10,29 +10,27 @@
   </div>
   <div class="bg-white border border-top-0 p-4 mb-3">
     <div class="mb-4">
-      <h6 class="text-uppercase font-weight-bold">Nos contacts</h6>
-
-      <div class="mb-3">
-        <div class="d-flex align-items-center mb-2">
-          <i class="fa fa-map-marker-alt text-info mr-2"></i>
-          <h6 class="font-weight-bold mb-0">Notre siege</h6>
+        <div class="mb-3">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fa fa-map-marker-alt text-info mr-2"></i>
+            <h6 class="font-weight-bold mb-0">Notre siege</h6>
+          </div>
+          <p class="m-0">{{ $global_settings->address }}</p>
         </div>
-        <p class="m-0">123 Street, New York, USA</p>
-      </div>
-      <div class="mb-3">
-        <div class="d-flex align-items-center mb-2">
-          <i class="fa fa-envelope-open text-info mr-2"></i>
-          <h6 class="font-weight-bold mb-0">Envoyez nous un email</h6>
+        <div class="mb-3">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fa fa-envelope-open text-info mr-2"></i>
+            <h6 class="font-weight-bold mb-0">Envoyez nous un email</h6>
+          </div>
+          <p class="m-0">{{ $global_settings->email }}</p>
         </div>
-        <p class="m-0">info@example.com</p>
-      </div>
-      <div class="mb-3">
-        <div class="d-flex align-items-center mb-2">
-          <i class="fa fa-phone-alt text-info mr-2"></i>
-          <h6 class="font-weight-bold mb-0">Appelez-nous</h6>
+        <div class="mb-3">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fa fa-phone-alt text-info mr-2"></i>
+            <h6 class="font-weight-bold mb-0">Appelez-nous</h6>
+          </div>
+          <p class="m-0">{{ $global_settings->phone }}</p>
         </div>
-        <p class="m-0">+012 345 6789</p>
-      </div>
     </div>
     <h6 class="text-uppercase font-weight-bold mb-3">
       Contactez-nous

@@ -79,11 +79,13 @@
   @if($article->isComment)
     <div class="mb-3">
       <div class="section-title mb-0">
-        <h4 class="m-0 text-uppercase font-weight-bold">{{ $article->comments->count() }} commentaires</h4>
+        <h4 class="m-0 text-uppercase font-weight-bold">
+          {{ $article->comments->count() }} commentaire{{ $article->comments->count() > 1 ? 's' : '' }}
+        </h4>
       </div>
       <div class="bg-white border border-top-0 p-4">
-        @if(count($article->comments))
-          @foreach($article->comments as $comment)
+
+          @forelse($article->comments as $comment)
             <div class="media mb-4">
               <img
                 src="{{ asset('back_auth/assets/img/logo.png') }}"
@@ -107,8 +109,10 @@
                 </p>
               </div>
             </div>
-          @endforeach
-        @endif
+
+          @empty
+            <p>Pas encore de commentaire pour cet article.</p>
+          @endforelse
 
       </div>
     </div>
