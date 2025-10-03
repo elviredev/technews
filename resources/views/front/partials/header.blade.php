@@ -2,7 +2,7 @@
   <nav
     class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5"
   >
-    <a href="index.html" class="navbar-brand d-block d-lg-none">
+    <a href="/" class="navbar-brand d-block d-lg-none">
       <h1 class="m-0 display-4 text-uppercase text-info">
         Tech<span class="text-white font-weight-normal">News</span>
       </h1>
@@ -30,11 +30,13 @@
           >Categories</a>
           <div class="dropdown-menu rounded-0 m-0">
             @foreach($global_categories as $category)
-              <a href="{{ route('category.articles', $category->slug) }}" class="dropdown-item">{{ $category->name }}</a>
+              <a href="{{ route('category.articles', $category->slug) }}" class="dropdown-item">
+                {{ $category->name }}
+              </a>
             @endforeach
           </div>
         </div>
-        <a href="contact.html" class="nav-item nav-link">Contact</a>
+        <a href="{{ route('front.contact') }}" class="nav-item nav-link">Contact</a>
       </div>
       <div
         class="input-group ml-auto d-none d-lg-flex"

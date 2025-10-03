@@ -79,13 +79,13 @@
   <div class="mb-3">
     <div class="section-title mb-0">
       <h4 class="m-0 text-uppercase font-weight-bold">
-        Advertisement
+        Publicité
       </h4>
     </div>
     <div class="bg-white text-center border border-top-0 p-3">
-      <a href=""
-      ><img class="img-fluid" src="img/news-800x500-2.jpg" alt=""
-        /></a>
+      <a href="">
+        <img class="img-fluid" src="{{ asset('front/img/news-800x500-2.jpg') }}" alt=""/>
+      </a>
     </div>
   </div>
   <!-- Ads fin -->
@@ -100,15 +100,20 @@
 
       @foreach($global_recent_articles as $article)
         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px">
-          <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+          <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-1">
             <div class="mb-2">
-              <a class="badge badge-info text-uppercase font-weight-semi-bold p-1 mr-2" href="{{ route('category.articles', $article->category->slug) }}">{{ $article->category->name }}</a>
-              <a class="text-body" href="">
+              <a
+                class="badge badge-info text-uppercase font-weight-semi-bold p-1 mr-2"
+                href="{{ route('category.articles', $article->category->slug) }}"
+              >
+                {{ $article->category->name }}
+              </a>
+              <p class="text-body d-inline">
                 @php $time = $article->created_at @endphp
                 <small> {{ $time->isoFormat('LL') }}</small>
-              </a>
+              </p>
             </div>
-            <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">
+            <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('article.details', $article->slug) }}">
               {{ \Illuminate\Support\Str::limit($article->title, 40, '...') }}
             </a>
           </div>
@@ -133,11 +138,11 @@
         <input
           type="text"
           class="form-control form-control-lg"
-          placeholder="Your Email"
+          placeholder="Votre Email"
         />
         <div class="input-group-append">
           <button class="btn btn-info font-weight-bold px-3">
-            Sign Up
+            S'inscrire
           </button>
         </div>
       </div>

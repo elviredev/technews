@@ -13,10 +13,10 @@
           />
           <div class="bg-white border border-top-0 p-4">
             <div class="mb-2">
-              <a class="text-body" href="">
+              <p class="text-body">
                 @php $time = $article->created_at @endphp
                 <small>{{ $time->isoFormat('LL') }}</small>
-              </a>
+              </p>
             </div>
             <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('article.details', $article->slug) }}">{{ $article->title }}</a>
           </div>

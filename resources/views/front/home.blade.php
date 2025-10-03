@@ -46,10 +46,10 @@
               <div class="overlay">
                 <div class="mb-2">
                   <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="{{ route('category.articles', $article->category->slug) }}">{{ $article->category->name }}</a>
-                  <a class="text-white" href="">
+                  <p class="text-white d-inline">
                     @php $time = $article->created_at @endphp
                     {{ $time->isoFormat('LL') }}
-                  </a>
+                  </p>
                 </div>
                 <a
                   class="h2 m-0 text-white text-uppercase font-weight-bold"
@@ -86,15 +86,18 @@
                 />
                 <div class="overlay">
                   <div class="mb-2">
-                    <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="{{ route('category.articles', $article->category->slug) }}">{{ $article->category->name }}</a>
-                    <a class="text-white" href="">
+                    <a
+                      class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2"
+                      href="{{ route('category.articles', $article->category->slug) }}">{{ $article->category->name }}
+                    </a>
+                    <p class="text-white d-inline">
                       @php $time = $article->created_at @endphp
                       <small>
                         {{ $time->isoFormat('LL') }}
                       </small>
-                    </a>
+                    </p>
                   </div>
-                  <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">{{ $article->title }}</a>
+                  <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{{ route('article.details', $article->slug) }}">{{ $article->title }}</a>
                 </div>
               </div>
             </div>
@@ -153,7 +156,7 @@
           <h4 class="m-0 text-uppercase font-weight-bold">
             {{ $category->name }}
           </h4>
-          <a class="text-secondary font-weight-medium text-decoration-none" href="{{ route('category.articles', $article->category->slug) }}">Voir tous</a>
+          <a class="text-secondary font-weight-medium text-decoration-none" href="{{ route('category.articles', $category->slug) }}">Voir tous</a>
         </div>
       </div>
 
@@ -168,12 +171,12 @@
             />
             <div class="bg-white border border-top-0 p-4">
               <div class="mb-2">
-                <a class="text-body" href="">
+                <p class="text-body">
                   @php $time = $article->created_at @endphp
                   <small> {{ $time->isoFormat('LL') }}</small>
-                </a>
+                </p>
               </div>
-              <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">{{ $article->title }}</a>
+              <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('article.details', $article->slug) }}">{{ $article->title }}</a>
             </div>
             <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
               <div class="d-flex align-items-center">
@@ -187,8 +190,8 @@
                 <small>{{ $article->author->name }}</small>
               </div>
               <div class="d-flex align-items-center">
-                <small class="ml-3"><i class="far fa-eye mr-2"></i>12345</small>
-                <small class="ml-3"><i class="far fa-comment mr-2"></i>123</small>
+                <small class="ml-3"><i class="far fa-eye mr-2"></i>{{ $article->views }}</small>
+                <small class="ml-3"><i class="far fa-comment mr-2"></i>{{ $article->comments->count() }}</small>
               </div>
             </div>
           </div>
