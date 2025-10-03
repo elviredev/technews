@@ -127,7 +127,12 @@
             />
             <div class="overlay">
               <div class="mb-2">
-                <a class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2" href="{{ route('category.articles', $article->category->slug) }}">{{ $article->category->name }}</a>
+                <a
+                  class="badge badge-info text-uppercase font-weight-semi-bold p-2 mr-2"
+                  href="{{ route('category.articles', $article->category->slug) }}"
+                >
+                  {{ $article->category->name }}
+                </a>
                 <p class="text-white">
                   <small>
                     @php $time = $article->created_at @endphp

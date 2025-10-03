@@ -10,6 +10,7 @@ use App\Http\Controllers\FrontCategoryController;
 use App\Http\Controllers\FrontContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\Social\SocialMediaController;
 use App\Http\Controllers\UserController;
@@ -30,6 +31,10 @@ Route::get('/categorie/{slug}', [FrontCategoryController::class, 'index'])->name
 // Page de contact FRONTEND
 Route::get('/front/contact', [FrontContactController::class, 'index'])->name('front.contact');
 Route::post('/contact/envoi', [FrontContactController::class, 'contact'])->name('contact.envoi');
+
+// Page des résulats de recherche FRONTEND
+Route::post('/recherche', [SearchController::class, 'index'])->name('search');
+Route::get('/tag/{tag}', [SearchController::class, 'byTag'])->name('tag.articles');
 
 
 // Dashboard BACKEND
