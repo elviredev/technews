@@ -1,5 +1,7 @@
 @extends('front.app')
 
+@section('title', 'Technews | ' . $category->name)
+
 @section('main_section')
   <div class="row">
 

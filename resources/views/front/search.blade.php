@@ -1,5 +1,7 @@
 @extends('front.app')
 
+@section('title', 'Technews | Recherche')
+
 @section('main_section')
   <div class="row">
 

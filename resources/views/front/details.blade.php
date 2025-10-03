@@ -1,5 +1,7 @@
 @extends('front.app')
 
+@section('title', 'Technews | ' . $article->title)
+
 @section('breaking_news')
   <div class="container-fluid mt-5 mb-3 pt-3">
     <div class="container">

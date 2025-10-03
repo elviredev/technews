@@ -1,5 +1,7 @@
 @extends('front.app')
 
+@section('title', 'Technews | Accueil')
+
 @section('breaking_news')
   <div class="container-fluid bg-dark py-3 mb-3">
     <div class="container">
@@ -11,7 +13,12 @@
 
               @foreach($articles as $article)
                 <div class="text-truncate">
-                  <a class="text-white text-uppercase font-weight-semi-bold" href="">{{ $article->title }}</a>
+                  <a
+                    class="text-white text-uppercase font-weight-semi-bold"
+                    href="{{ route('article.details', $article->slug) }}"
+                  >
+                    {{ $article->title }}
+                  </a>
                 </div>
               @endforeach
 
@@ -96,7 +103,12 @@
                       </small>
                     </p>
                   </div>
-                  <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{{ route('article.details', $article->slug) }}">{{ $article->title }}</a>
+                  <a
+                    class="h6 m-0 text-white text-uppercase font-weight-semi-bold"
+                    href="{{ route('article.details', $article->slug) }}"
+                  >
+                    {{ $article->title }}
+                  </a>
                 </div>
               </div>
             </div>
@@ -163,7 +175,12 @@
           <h4 class="m-0 text-uppercase font-weight-bold">
             {{ $category->name }}
           </h4>
-          <a class="text-secondary font-weight-medium text-decoration-none" href="{{ route('category.articles', $category->slug) }}">Voir tous</a>
+          <a
+            class="text-secondary font-weight-medium text-decoration-none"
+            href="{{ route('category.articles', $category->slug) }}"
+          >
+            Voir tous
+          </a>
         </div>
       </div>
 
@@ -182,7 +199,9 @@
                   <small> {{ $time->isoFormat('LL') }}</small>
                 </p>
               </div>
-              <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('article.details', $article->slug) }}">{{ $article->title }}</a>
+              <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('article.details', $article->slug) }}">
+                {{ $article->title }}
+              </a>
             </div>
             <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
               <div class="d-flex align-items-center">

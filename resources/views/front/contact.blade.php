@@ -1,5 +1,7 @@
 @extends('front.app')
 
+@section('title', 'Technews | Contact')
+
 @section('title', 'Page de contact')
 
 @section('main_section')

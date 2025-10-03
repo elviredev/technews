@@ -10,10 +10,7 @@
         class="d-block w-100 text-white text-decoration-none mb-3"
         style="background: #39569e"
       >
-        <i
-          class="fab fa-facebook-f text-center py-4 mr-3"
-          style="width: 65px; background: rgba(0, 0, 0, 0.2)"
-        ></i>
+        <i class="fab fa-facebook-f text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, 0.2)"></i>
         <span class="font-weight-medium">12,345 Fans</span>
       </a>
       <a
@@ -21,10 +18,7 @@
         class="d-block w-100 text-white text-decoration-none mb-3"
         style="background: #52aaf4"
       >
-        <i
-          class="fab fa-twitter text-center py-4 mr-3"
-          style="width: 65px; background: rgba(0, 0, 0, 0.2)"
-        ></i>
+        <i class="fab fa-twitter text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, 0.2)"></i>
         <span class="font-weight-medium">12,345 Followers</span>
       </a>
       <a
@@ -32,10 +26,7 @@
         class="d-block w-100 text-white text-decoration-none mb-3"
         style="background: #0185ae"
       >
-        <i
-          class="fab fa-linkedin-in text-center py-4 mr-3"
-          style="width: 65px; background: rgba(0, 0, 0, 0.2)"
-        ></i>
+        <i class="fab fa-linkedin-in text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, 0.2)"></i>
         <span class="font-weight-medium">12,345 Connects</span>
       </a>
       <a
@@ -43,10 +34,7 @@
         class="d-block w-100 text-white text-decoration-none mb-3"
         style="background: #c8359d"
       >
-        <i
-          class="fab fa-instagram text-center py-4 mr-3"
-          style="width: 65px; background: rgba(0, 0, 0, 0.2)"
-        ></i>
+        <i class="fab fa-instagram text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, 0.2)"></i>
         <span class="font-weight-medium">12,345 Followers</span>
       </a>
       <a
@@ -54,10 +42,7 @@
         class="d-block w-100 text-white text-decoration-none mb-3"
         style="background: #dc472e"
       >
-        <i
-          class="fab fa-youtube text-center py-4 mr-3"
-          style="width: 65px; background: rgba(0, 0, 0, 0.2)"
-        ></i>
+        <i class="fab fa-youtube text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, 0.2)"></i>
         <span class="font-weight-medium">12,345 Subscribers</span>
       </a>
       <a
@@ -65,10 +50,7 @@
         class="d-block w-100 text-white text-decoration-none"
         style="background: #055570"
       >
-        <i
-          class="fab fa-vimeo-v text-center py-4 mr-3"
-          style="width: 65px; background: rgba(0, 0, 0, 0.2)"
-        ></i>
+        <i class="fab fa-vimeo-v text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, 0.2)"></i>
         <span class="font-weight-medium">12,345 Followers</span>
       </a>
     </div>
