@@ -16,3 +16,6 @@
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="{{ asset('front/css/style.css') }}" rel="stylesheet" />
+
+<!-- Sharethis -->
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=68dffe951ac50b35b251d878&product=sop' async='async'></script>

@@ -77,6 +77,13 @@
   </div>
   <!-- News Detail End -->
 
+  <!-- ShareThis BEGIN -->
+  @if($article->isSharable)
+    <div class="sharethis-inline-share-buttons my-3"></div>
+  @endif
+
+  <!-- ShareThis END -->
+
   <!-- Comment List Start -->
   @if($article->isComment)
     <div class="mb-3">
@@ -123,7 +130,8 @@
   <!-- Comment List End -->
 
   <!-- Comment Form Start -->
-  <div class="mb-3">
+  @if($article->isComment)
+    <div class="mb-3">
     <div class="section-title mb-0">
       <h4 class="m-0 text-uppercase font-weight-bold">
         Laissez un commentaire
@@ -186,5 +194,6 @@
       </form>
     </div>
   </div>
+  @endif
   <!-- Comment Form End -->
 @endsection

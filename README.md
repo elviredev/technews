@@ -11,6 +11,7 @@
 - ➰Slug : **spatie/laravel-sluggable**
 - #️⃣ Tag : **rtconner/laravel-tagging**
 - 🖼️ Image (Resize et compression) : **intervention/image**
+- ↗️ Partager les articles : **https://platform.sharethis.com/inline-share-buttons**
 - ⚠️ Pages d'erreurs : 
 ```bash
 php artisan vendor:publish --tag=laravel-errors
