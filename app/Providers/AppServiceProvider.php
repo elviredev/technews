@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Settings;
 use App\Models\SocialMedia;
 use Carbon\Carbon;
 use Conner\Tagging\Model\Tag;
@@ -46,11 +47,19 @@ class AppServiceProvider extends ServiceProvider
       $categories = Category::where('isActive', 1)->orderBy('created_at', 'desc')->get();
       $articles = Article::where('isActive', 1)->orderBy('created_at', 'desc')->limit(5)->get();
       $tags = Tag::orderBy('id', 'desc')->limit(15)->get();
+      $settings = Settings::where('id', 1)->first();
+      $popular_articles = Article::where('isActive', 1)
+        ->orderBy('created_at', 'desc')
+        ->orderBy('views', 'desc')
+        ->limit(3)
+        ->get();
 
 
       view()->share('global_socials', $socials);
       view()->share('global_categories', $categories);
       view()->share('global_recent_articles', $articles);
       view()->share('global_tags', $tags);
+      view()->share('global_settings', $settings);
+      view()->share('global_popular_articles', $popular_articles);
     }
 }
