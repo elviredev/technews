@@ -39,6 +39,9 @@ class SearchController extends Controller
       ->where('isActive', 1)
       ->get();
 
-    return view('front.search', compact('articles'));
+    // On passe le tag comme "search" pour réutiliser le Blade
+    $search = $tag;
+
+    return view('front.search', compact('articles', 'search'));
   }
 }

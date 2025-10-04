@@ -53,7 +53,7 @@
       </div>
 
     @empty
-      <h6>Aucun résultats pour la recherche <span class="text-info">{{ $search }}</span> demandée.</h6>
+      <h6>Aucun résultats pour la recherche <span class="text-info">{{ $search ?? '' }}</span> demandée.</h6>
     @endforelse
 
   </div>
