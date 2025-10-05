@@ -10,9 +10,32 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link text-body small" href="{{ route('login') }}">Login</a>
-          </li>
+          @auth
+            @php $user = auth()->user(); @endphp
+
+            {{-- Admin ou Author → Dashboard --}}
+            @if($user->hasRole(['admin','author']))
+              <li class="nav-item">
+                <a class="nav-link text-body small" href="{{ route('dashboard') }}">Dashboard</a>
+              </li>
+            @endif
+
+            {{-- Visitor → Logout seulement --}}
+            @if($user->hasRole(['visitor']))
+              <li class="nav-item">
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button type="submit" class="nav-link btn btn-link text-body small p-0 mt-1">Logout</button>
+                </form>
+              </li>
+            @endif
+          @else
+            {{-- Utilisateur non connecté → Login --}}
+            <li class="nav-item">
+              <a class="nav-link text-body small" href="{{ route('login') }}">Login</a>
+            </li>
+          @endauth
+
         </ul>
       </nav>
     </div>

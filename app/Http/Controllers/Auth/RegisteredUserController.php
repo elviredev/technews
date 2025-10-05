@@ -43,6 +43,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // récupération du rôle "user"
+        $userRole = \App\Models\Role::where('name', 'visitor')->first();
+
+        // assignation du rôle
+        $user->roles()->attach($userRole->id);
+
         // déclenchement de l'évènement Registered, permet de lancer automatiquement des actions
         // (exemple : envoi d’un email de vérification si la fonctionnalité est activée via MustVerifyEmail).
         event(new Registered($user));
@@ -50,6 +56,10 @@ class RegisteredUserController extends Controller
         // connexion automatique, pas besoin de se reconnecter
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        if ($user->hasRole(['admin','author'])) {
+          return redirect()->route('dashboard');
+        }
+
+        return redirect('/');
     }
 }
