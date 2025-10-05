@@ -17,11 +17,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('back.author.index', [
-          'authors' => User::where('role', 'author')
-                            ->where('id', '!=', Auth::id())
-                            ->get()
-        ]);
+      return view('back.author.index', [
+        'authors' => User::whereHas('roles', function ($query) {
+          $query->where('name', 'author');
+        })
+          ->where('id', '!=', Auth::id())
+          ->get()
+      ]);
     }
 
     /**
